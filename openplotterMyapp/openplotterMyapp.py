@@ -134,7 +134,7 @@ class MyFrame(wx.Frame):
 	def readMyapp(self):
 		pass
 		# here get data from conf file to load the surrent settings
-		valor = self.conf.get('MYCATEGORY', 'myoption')
+		valor = self.conf.get('MYAPP', 'myoption')
 		self.myoption.SetLabel(valor)
 
 	def pageConnections(self):
@@ -182,7 +182,7 @@ class MyFrame(wx.Frame):
 	def OnToolApply(self,e):
 		pass
 		# here set options in conf file:
-		self.conf.set('MYCATEGORY', 'myoption', 'myvalor')
+		self.conf.set('MYAPP', 'myoption', 'myvalor')
 		self.readMyapp()
 		self.ShowStatusBarGREEN(_('Changes saved'))
 		# start services if needed. Use self.platform.admin instaed of sudo:
