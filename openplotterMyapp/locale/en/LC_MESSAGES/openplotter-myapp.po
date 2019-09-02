@@ -1,0 +1,76 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: openplotter-myapp\n"
+"POT-Creation-Date: 2019-09-02 19:38+0200\n"
+"PO-Revision-Date: 2019-09-02 19:38+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: myappPostInstallation.py:29
+msgid "Adding openplotter-read-myapp service..."
+msgstr ""
+
+#: myappPostInstallation.py:42
+msgid "DONE!"
+msgstr ""
+
+#: myappPostInstallation.py:43
+msgid "FAILED!"
+msgstr ""
+
+#: openplotterMyapp.py:36
+msgid "OpenPlotter My App"
+msgstr ""
+
+#: openplotterMyapp.py:42
+msgid "Help"
+msgstr ""
+
+#: openplotterMyapp.py:45
+msgid "Settings"
+msgstr ""
+
+#: openplotterMyapp.py:50
+msgid "Apply Changes"
+msgstr ""
+
+#: openplotterMyapp.py:52
+msgid "Cancel Changes"
+msgstr ""
+
+#: openplotterMyapp.py:59
+msgid "My App"
+msgstr ""
+
+#: openplotterMyapp.py:60
+msgid "Data output"
+msgstr ""
+
+#: openplotterMyapp.py:61
+msgid "Output"
+msgstr ""
+
+#: openplotterMyapp.py:120
+msgid "myoption:  "
+msgstr ""
+
+#: openplotterMyapp.py:142
+msgid "SK Connection"
+msgstr ""
+
+#: openplotterMyapp.py:187
+msgid "Changes saved"
+msgstr ""
+
+#: openplotterMyapp.py:195
+msgid "Changes canceled"
+msgstr ""
