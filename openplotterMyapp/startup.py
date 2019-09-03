@@ -15,16 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import time, os
+import time, os, subprocess
 from openplotterSettings import language
 
-# This class will be called once startup
+# This class will be always called at startup
 class Start():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
 		currentdir = os.path.dirname(__file__)
 		language.Language(currentdir,'openplotter-myapp',currentLanguage)
-		# self.initialMessage will be printed at startup. If it is empty the function start will not be called. Use trasnlatable text: _('Starting My App...')
+		# self.initialMessage will be printed at startup if it has content. If not, the function start will not be called. Use trasnlatable text: _('Starting My App...')
 		self.initialMessage = ''
 
 	# this funtion will be called only if self.initialMessage has content.
@@ -33,20 +33,19 @@ class Start():
 		black = '' # black messages will be printed in black after the green message
 		red = '' # red messages will be printed in red in a new line
 
-		# start any program and set the messages
+		# start here any program that needs to be started at startup and set the messages. If you program does not need a GUI, the best option to start it at startup is creating a service (see setup.py and myappPostInstall.py)
 
-		time.sleep(2)
+		time.sleep(2) # check function is always called so if we start any program here we should wait some seconds before checking it. 
 		return {'green': green,'black': black,'red': red}
 
-# This class will be called after startup and when the user checks the system
+# This class will be always called after start and when the user checks the system
 class Check():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
 		currentdir = os.path.dirname(__file__)
 		language.Language(currentdir,'openplotter-myapp',currentLanguage)
 		# self.initialMessage will be printed when checking system. If it is empty the function check will not be called. Use trasnlatable text: _('Checking My App...')
-		self.initialMessage = ''
-
+		self.initialMessage = _('Checking My App dummy sensors...')
 
 	def check(self):
 		green = '' # green messages will be printed in green after the self.initialMessage
@@ -54,6 +53,10 @@ class Check():
 		red = '' # red messages will be printed in red in a new line
 
 		# check any feature and set the messages
+		try:
+			subprocess.check_output(['systemctl', 'is-active', 'openplotter-myapp-read.service']).decode('utf-8')
+			green = _('running')
+		except: black = _('not running')
 
 		return {'green': green,'black': black,'red': red}
 

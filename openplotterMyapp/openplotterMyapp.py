@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 # This file is part of Openplotter.
-# Copyright (C) 2019 by sailoog <https://github.com/sailoog/openplotter>
-#                     e-sailing <https://github.com/e-sailing/openplotter>
+# Copyright (C) 2019 by xxxx <https://github.com/xxxx/openplotter-myapp>
+#
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 2 of the License, or
@@ -45,7 +45,8 @@ class MyFrame(wx.Frame):
 		toolSettings = self.toolbar1.AddTool(102, _('Settings'), wx.Bitmap(self.currentdir+"/data/settings.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolSettings, toolSettings)
 		self.toolbar1.AddSeparator()
-
+		toolSend = self.toolbar1.AddCheckTool(103, _('Send Dummy Data'), wx.Bitmap(self.currentdir+"/data/send.png"))
+		self.Bind(wx.EVT_TOOL, self.OnToolSend, toolSend)
 		self.toolbar1.AddSeparator()
 		toolApply = self.toolbar1.AddTool(104, _('Apply Changes'), wx.Bitmap(self.currentdir+"/data/apply.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolApply, toolApply)
@@ -117,7 +118,7 @@ class MyFrame(wx.Frame):
 		self.output.SetSizer(sizer)
 
 	def pageMyapp(self):
-		myoptionLabel = wx.StaticText(self.myapp, label=_('myoption:  '))
+		myoptionLabel = wx.StaticText(self.myapp, label=_('Sending:  '))
 		self.myoption = wx.StaticText(self.myapp, label='')
 
 		hbox = wx.BoxSizer(wx.HORIZONTAL)
@@ -132,10 +133,16 @@ class MyFrame(wx.Frame):
 		self.readMyapp()
 
 	def readMyapp(self):
-		pass
 		# here get data from conf file to load the surrent settings
-		valor = self.conf.get('MYAPP', 'myoption')
-		self.myoption.SetLabel(valor)
+		value = self.conf.get('MYAPP', 'sending')
+		if not value: value = '0' 
+		self.myoption.SetLabel(value)
+		if value == '1': self.toolbar1.ToggleTool(103,True)
+		else: self.toolbar1.ToggleTool(103,False)
+
+	def OnToolSend(self,e):
+		if self.toolbar1.GetToolState(103): self.myoption.SetLabel('1')
+		else: self.myoption.SetLabel('0')
 
 	def pageConnections(self):
 		self.toolbar3 = wx.ToolBar(self.connections, style=wx.TB_TEXT)
@@ -180,19 +187,21 @@ class MyFrame(wx.Frame):
 		webbrowser.open(url, new=2)
 
 	def OnToolApply(self,e):
-		pass
-		# here set options in conf file:
-		self.conf.set('MYAPP', 'myoption', 'myvalor')
+		if self.toolbar1.GetToolState(103):
+			self.conf.set('MYAPP', 'sending', '1')
+			# starts service and enables it at startup. Use self.platform.admin instead of sudo
+			subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', 'enable'])
+			self.ShowStatusBarGREEN(_('Sending dummy data enabled'))
+		else:
+			self.conf.set('MYAPP', 'sending', '0')
+			# stops service and disables it at startup. Use self.platform.admin instead of sudo
+			subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', 'disable'])
+			self.ShowStatusBarYELLOW(_('Sending dummy data disabled'))
 		self.readMyapp()
-		self.ShowStatusBarGREEN(_('Changes saved'))
-		# start services if needed. Use self.platform.admin instaed of sudo:
-		subprocess.Popen([self.platform.admin, 'systemctl', 'enable', 'openplotter-myapp-read'])
-		subprocess.Popen([self.platform.admin, 'systemctl', 'restart', 'openplotter-myapp-read'])
 		
 	def OnToolCancel(self,e):
-		pass
-		self.readMyapp()
 		self.ShowStatusBarRED(_('Changes canceled'))
+		self.readMyapp()
 
 def main():
 	app = wx.App()

@@ -34,10 +34,6 @@ def main():
 		subprocess.call(['systemctl', 'daemon-reload'])
 		# enable the service to run at startup:
 		subprocess.call(['systemctl', 'enable', 'openplotter-myapp-read.service'])
-		# other useful commands:
-		# subprocess.call(['systemctl', 'start', 'openplotter-myapp-read.service'])
-		# subprocess.call(['systemctl', 'stop', 'openplotter-myapp-read.service'])
-		# subprocess.call(['systemctl', 'restart', 'openplotter-myapp-read.service'])
 
 		print(_('DONE!'))
 	except: print(_('FAILED!'))

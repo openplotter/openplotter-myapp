@@ -26,5 +26,8 @@ class Ports:
 
 		# check the app and set the addresses.
 		# self.usedPorts=[{'description':_('My App'), 'type':'UDP/TCP', 'address':'localhost', 'port':000000, 'direction':'out/in'}]
-		
 		self.usedPorts=[]
+		try:
+			subprocess.check_output(['systemctl', 'is-active', 'openplotter-myapp-read.service']).decode('utf-8')
+			self.usedPorts=[{'description':_('My App'), 'type':'UDP', 'address':'localhost', 'port':self.conf.get('MYAPP', 'port'), 'direction':'out'}]
+		except:pass
