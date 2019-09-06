@@ -14,20 +14,23 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
-import subprocess, os
+import os
 from openplotterSettings import language
 
-# This scripts define the addresses and ports used by this app to be shown when checking the system.
 class Ports:
 	def __init__(self,conf,currentLanguage):
 		self.conf = conf
 		currentdir = os.path.dirname(__file__)
 		language.Language(currentdir,'openplotter-myapp',currentLanguage)
 
-		# check the app and set the addresses.
-		# self.usedPorts=[{'description':_('My App'), 'type':'UDP/TCP', 'address':'localhost', 'port':000000, 'direction':'out/in'}]
-		self.usedPorts=[]
-		try:
-			subprocess.check_output(['systemctl', 'is-active', 'openplotter-myapp-read.service']).decode('utf-8')
-			self.usedPorts=[{'description':_('My App'), 'type':'UDP', 'address':'localhost', 'port':self.conf.get('MYAPP', 'port'), 'direction':'out'}]
-		except:pass
+		#[{'id':0, description':_('My App'), 'data':[Signal K keys], 'type':'UDP/TCP', 'mode':'client/server', 'address':'localhost', 'port':000000, 'editable':'1'}]
+		self.connections = []
+
+		connectionId = 'conn1'
+		try: port = int(self.conf.get('MYAPP', connectionId))
+		except: port = 50000 #default port
+		self.connections.append({'id':connectionId, 'description':_('My App'), 'data':['Random.Number1','Random.Number2'], 'type':'UDP', 'mode':'client', 'address':'localhost', 'port':port, 'editable':'1'})
+
+	def usedPorts(self):
+		state = self.conf.get('MYAPP', 'sending')
+		if state == '1': return self.connections

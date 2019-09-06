@@ -19,22 +19,19 @@ from openplotterSettings import conf
 from openplotterSettings import language
 
 def main():
-	# This file will be ran as sudo. Do here whatever you need after package installation.
+	# This file will be ran as sudo. Do here whatever you need to remove before app uninstall.
 	conf2 = conf.Conf()
 	currentdir = os.path.dirname(__file__)
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-myapp',currentLanguage)
 
 	# here we create a service to run openplotter-myapp-read file
-	print(_('Adding openplotter-read-myapp service...'))
+	print(_('Removing openplotter-read-myapp service...'))
 	try:
-		fo = open('/etc/systemd/system/openplotter-myapp-read.service', "w")
-		fo.write( '[Service]\nExecStart=openplotter-myapp-read\nStandardOutput=syslog\nStandardError=syslog\nUser='+conf2.user+'\n[Install]\nWantedBy=multi-user.target')
-		fo.close()
+		subprocess.call(['systemctl', 'disable', 'openplotter-myapp-read'])
+		subprocess.call(['systemctl', 'stop', 'openplotter-myapp-read'])
+		subprocess.call(['rm', '-f', '/etc/systemd/system/openplotter-myapp-read.service'])
 		subprocess.call(['systemctl', 'daemon-reload'])
-		# enable the service to run at startup:
-		subprocess.call(['systemctl', 'enable', 'openplotter-myapp-read.service'])
-
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 

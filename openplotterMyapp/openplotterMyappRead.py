@@ -21,7 +21,7 @@ def main():
 	try:
 		conf2 = conf.Conf()
 		value = conf2.get('MYAPP', 'sending')
-		port = conf2.get('MYAPP', 'port')
+		port = conf2.get('MYAPP', 'conn1')
 		if value == '1':
 			sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 			while True:
