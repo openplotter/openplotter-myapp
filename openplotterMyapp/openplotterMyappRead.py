@@ -17,12 +17,14 @@
 import socket, time, random
 from openplotterSettings import conf
 
+# this file runs as a service in the background
 def main():
 	try:
 		conf2 = conf.Conf()
 		value = conf2.get('MYAPP', 'sending')
 		port = conf2.get('MYAPP', 'myappConn1')
 		if value == '1':
+			# this script sends data to Signal K servers by an UDP connection in client mode
 			sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 			while True:
 				random1 = random.randint(1,101)

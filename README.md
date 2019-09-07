@@ -18,9 +18,9 @@ Install [openplotter-settings](https://github.com/openplotter/openplotter-settin
 
 Install OpenPlotter dependencies:
 
-`sudo apt install openplotter-settings python3-wxgtk4.0`
+`sudo apt install openplotter-settings`
 
-> Any OpenPlotter app needs at least openplotter-settings and python3-wxgtk4.0
+> Any OpenPlotter app needs at least openplotter-settings
 
 Install other dependencies:
 

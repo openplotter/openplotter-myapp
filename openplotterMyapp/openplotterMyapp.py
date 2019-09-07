@@ -17,12 +17,10 @@
 
 import wx, os, webbrowser, subprocess, socket
 import wx.richtext as rt
-
 from openplotterSettings import conf
 from openplotterSettings import language
-# use this class to get info about the host system. See: https://github.com/openplotter/openplotter-settings/blob/master/openplotterSettings/platform.py
+# use the class "platform" to get info about the host system. See: https://github.com/openplotter/openplotter-settings/blob/master/openplotterSettings/platform.py
 from openplotterSettings import platform
-
 
 class MyFrame(wx.Frame):
 	def __init__(self):
@@ -92,21 +90,26 @@ class MyFrame(wx.Frame):
 		self.GetStatusBar().SetForegroundColour(colour)
 		self.SetStatusText(w_msg)
 
+	# red for error or cancellation messages
 	def ShowStatusBarRED(self, w_msg):
 		self.ShowStatusBar(w_msg, (130,0,0))
 
+	# green for succesful messages
 	def ShowStatusBarGREEN(self, w_msg):
 		self.ShowStatusBar(w_msg, (0,130,0))
 
+	# black for informative messages
 	def ShowStatusBarBLACK(self, w_msg):
 		self.ShowStatusBar(w_msg, wx.BLACK) 
 
+	# yellow for attention messages
 	def ShowStatusBarYELLOW(self, w_msg):
 		self.ShowStatusBar(w_msg,(255,140,0)) 
 
 	def onTabChange(self, event):
 		self.SetStatusText('')
 
+	# create your page in the manuals and add the link here
 	def OnToolHelp(self, event): 
 		url = "/usr/share/openplotter-doc/template/myapp_app.html"
 		webbrowser.open(url, new=2)
@@ -192,7 +195,7 @@ class MyFrame(wx.Frame):
 		print ()
 
 	def printConnections(self):
-		# Check if Signal K and some plugins is installed
+		# Check if Signal K and some plugins are installed
 		if self.platform.skPort: 
 			self.toolbar3.EnableTool(302,True)
 			self.toolbar3.EnableTool(303,True)

@@ -19,13 +19,13 @@ from openplotterSettings import conf
 from openplotterSettings import language
 
 def main():
-	# This file will be ran as sudo. Do here whatever you need to remove before app uninstall.
+	# This file will be ran as sudo. Do here whatever you need to remove files and programs before app uninstall.
 	conf2 = conf.Conf()
 	currentdir = os.path.dirname(__file__)
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-myapp',currentLanguage)
 
-	# here we create a service to run openplotter-myapp-read file
+	# here we remove the services
 	print(_('Removing openplotter-read-myapp service...'))
 	try:
 		subprocess.call(['systemctl', 'disable', 'openplotter-myapp-read'])

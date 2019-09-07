@@ -14,11 +14,11 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
-
-# start services if needed. Use self.platform.admin instaed of sudo:
 import sys, subprocess
 
-# this file should be called as admin
+# this file should be called as sudo
+# in non Raspberry systems, users have to provide the admin password every time an instruction contains "sudo". 
+# We should try to put all instrucctions with "sudo" in only one file and execute it as "sudo"
 if sys.argv[1]=='enable':
 	subprocess.call(['systemctl', 'enable', 'openplotter-myapp-read'])
 	subprocess.call(['systemctl', 'restart', 'openplotter-myapp-read'])

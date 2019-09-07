@@ -32,9 +32,6 @@ def main():
 		fo.write( '[Service]\nExecStart=openplotter-myapp-read\nStandardOutput=syslog\nStandardError=syslog\nUser='+conf2.user+'\n[Install]\nWantedBy=multi-user.target')
 		fo.close()
 		subprocess.call(['systemctl', 'daemon-reload'])
-		# enable the service to run at startup:
-		subprocess.call(['systemctl', 'enable', 'openplotter-myapp-read.service'])
-
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 

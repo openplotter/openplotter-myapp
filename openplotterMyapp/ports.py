@@ -17,20 +17,31 @@
 import os
 from openplotterSettings import language
 
+# Here you have to define all the TCP/UDP connections on localhost managed by your app so that the main app can wtch for conflicts. Use this format:
+# {'id':'uniqueId', description':_('My App'), 'data':[], 'type':'UDP/TCP', 'mode':'client/server', 'address':'localhost', 'port':000000, 'editable':'1'}
+# id (text, required): any unique id 
+# description (text, required): use translatable text
+# data (list, optional): a list with the Signal K keys thta your app is sending by this connection
+# type (text, required): TCP or UDP
+# mode (text, required): client or server. Normally you can only set one TCP/UDP server for the same port. You can define multiple TCP/UDP clients for the same port. 
+# Clients and servers can send and receive data. A UDP connection listenning on any port will be a server. A UDP connection just sending data to any port will be a client. 
+# A TCP connection listenning on any port can be client or server
+# address (text, required): this should always be localhost
+# port (number, required): the port where the connections is set
+# editable (text, optional): if your app provide a way of changing the port, set this value to '1'
 class Ports:
 	def __init__(self,conf,currentLanguage):
 		self.conf = conf
 		currentdir = os.path.dirname(__file__)
 		language.Language(currentdir,'openplotter-myapp',currentLanguage)
-
-		#[{'id':0, description':_('My App'), 'data':[Signal K keys], 'type':'UDP/TCP', 'mode':'client/server', 'address':'localhost', 'port':000000, 'editable':'1'}]
+		# here you have to define what connections will be always present in your app
 		self.connections = []
-
 		connectionId = 'myappConn1'
 		try: port = int(self.conf.get('MYAPP', connectionId))
 		except: port = 50000 #default port
 		self.connections.append({'id':connectionId, 'description':_('My App'), 'data':['Random.Number1','Random.Number2'], 'type':'UDP', 'mode':'client', 'address':'localhost', 'port':port, 'editable':'1'})
 
 	def usedPorts(self):
+		# here you have to define what connections are enabled when this function is called to check servers conflicts or provide a list of the enabled connections in your system.
 		state = self.conf.get('MYAPP', 'sending')
 		if state == '1': return self.connections
