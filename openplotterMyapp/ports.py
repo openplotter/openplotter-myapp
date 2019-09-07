@@ -26,7 +26,7 @@ class Ports:
 		#[{'id':0, description':_('My App'), 'data':[Signal K keys], 'type':'UDP/TCP', 'mode':'client/server', 'address':'localhost', 'port':000000, 'editable':'1'}]
 		self.connections = []
 
-		connectionId = 'conn1'
+		connectionId = 'myappConn1'
 		try: port = int(self.conf.get('MYAPP', connectionId))
 		except: port = 50000 #default port
 		self.connections.append({'id':connectionId, 'description':_('My App'), 'data':['Random.Number1','Random.Number2'], 'type':'UDP', 'mode':'client', 'address':'localhost', 'port':port, 'editable':'1'})

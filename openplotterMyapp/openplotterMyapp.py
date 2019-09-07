@@ -108,7 +108,7 @@ class MyFrame(wx.Frame):
 		self.SetStatusText('')
 
 	def OnToolHelp(self, event): 
-		url = "/usr/share/openplotter-doc/templates/myapp_app.html"
+		url = "/usr/share/openplotter-doc/template/myapp_app.html"
 		webbrowser.open(url, new=2)
 
 	def OnToolSettings(self, event): 
