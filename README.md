@@ -20,7 +20,7 @@ Install OpenPlotter dependencies:
 
 `sudo apt install openplotter-settings`
 
-> Any OpenPlotter app needs at least openplotter-settings
+> Any OpenPlotter app must have openplotter-settings installed
 
 Install other dependencies:
 

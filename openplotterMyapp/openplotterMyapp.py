@@ -167,9 +167,10 @@ class MyFrame(wx.Frame):
 		self.listConnections = wx.ListCtrl(self.connections, -1, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.LC_HRULES, size=(-1,200))
 		self.listConnections.InsertColumn(0, _('Type'), width=80)
 		self.listConnections.InsertColumn(1, _('Mode'), width=80)
-		self.listConnections.InsertColumn(2, _('Data'), width=395)
-		self.listConnections.InsertColumn(3, _('Port'), width=80)
-		self.listConnections.InsertColumn(4, _('Editable'), width=80)
+		self.listConnections.InsertColumn(2, _('Data'), width=315)
+		self.listConnections.InsertColumn(3, _('Direction'), width=80)
+		self.listConnections.InsertColumn(4, _('Port'), width=80)
+		self.listConnections.InsertColumn(5, _('Editable'), width=80)
 		self.listConnections.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onlistConnectionsSelected)
 		self.listConnections.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onlistConnectionsDeselected)
 
@@ -213,8 +214,15 @@ class MyFrame(wx.Frame):
 		for i in self.ports.connections:
 			if i['editable'] == '1': editable = _('yes')
 			else: editable = _('no')
-			data = ", ".join(i['data'])
-			self.listConnections.Append([i['type'], i['mode'], data, str(i['port']), editable])
+			direction = ''
+			if i['direction'] == '1': direction = _('input')
+			elif i['direction'] == '2': direction = _('output')
+			elif i['direction'] == '3': direction = _('both')
+			self.listConnections.Append([i['type'], i['mode'], i['data'], direction, str(i['port']), editable])
+			# if the connection is enabled we will set the item background to:
+			# yellow for Signal K data: (255,215,0)
+			# blue for NMEA 2000 data: (0,215,255)
+			# green for NMEA 0183 data: (115,255,115)
 			if enabled == '1': self.listConnections.SetItemBackgroundColour(self.listConnections.GetItemCount()-1,(255,215,0))
 
 	def OnSkConnections(self,e):
