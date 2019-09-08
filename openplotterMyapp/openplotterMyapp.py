@@ -193,7 +193,6 @@ class MyFrame(wx.Frame):
 	def readConnections(self):
 		from .ports import Ports
 		self.ports = Ports(self.conf, self.currentLanguage)
-		print ()
 
 	def printConnections(self):
 		# Check if Signal K and some plugins are installed
