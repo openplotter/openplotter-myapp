@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import time, os, subprocess
+import time, os, subprocess, sys
 from openplotterSettings import language
 
 # This class will be always called at startup. You should start here only GUI programs. Non GUI progrmas should be started as a services, see setup.py and myappPostInstall.py
@@ -54,7 +54,7 @@ class Check():
 
 		# check any feature and set the messages
 		try:
-			subprocess.check_output(['systemctl', 'is-active', 'openplotter-myapp-read.service']).decode('utf-8')
+			subprocess.check_output(['systemctl', 'is-active', 'openplotter-myapp-read.service']).decode(sys.stdin.encoding)
 			green = _('running')
 		except: black = _('not running')
 

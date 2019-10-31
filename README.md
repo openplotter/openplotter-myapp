@@ -8,7 +8,7 @@ This is a template to help create apps for OpenPlotter.
 
 #### For production
 
-Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) and just install this app from *OpenPlotter Apps* tab.
+Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **production** and just install this app from *OpenPlotter Apps* tab.
 
 > Your app should be aproved by OpenPlotter team and added to the openplotter-settings main app. It should be written for python3. 
 
@@ -16,24 +16,21 @@ Install [openplotter-settings](https://github.com/openplotter/openplotter-settin
 
 > Put here all the info needed to install, edit and propose changes to your app.
 
-Install OpenPlotter dependencies:
-
-`sudo apt install openplotter-settings`
+Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **development**.
 
 > Any OpenPlotter app must have openplotter-settings installed
 
-Install other dependencies:
+Install openplotter-myapp dependencies:
 
 `sudo apt install foo bar`
 
-`sudo pip install foo bar`
-
-Clone the repository:
+Clone openplotter-myapp:
 
 `git clone https://github.com/openplotter/openplotter-myapp`
 
-Make your changes and test them locally:
+Make your changes and test them installing the app:
 
+`cd openplotter-myapp`
 `sudo python3 setup.py install`
 
 Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter/).

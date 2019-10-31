@@ -65,7 +65,7 @@ class MyFrame(wx.Frame):
 		self.output = wx.Panel(self.notebook)
 		self.notebook.AddPage(self.myapp, _('My App'))
 		self.notebook.AddPage(self.connections, _('Data output'))
-		self.notebook.AddPage(self.output, _('Output'))
+		self.notebook.AddPage(self.output, '')
 		self.il = wx.ImageList(24, 24)
 		img0 = self.il.Add(wx.Bitmap(self.currentdir+"/data/openplotter-24.png", wx.BITMAP_TYPE_PNG))
 		img1 = self.il.Add(wx.Bitmap(self.currentdir+"/data/connections.png", wx.BITMAP_TYPE_PNG))
@@ -83,7 +83,10 @@ class MyFrame(wx.Frame):
 		self.pageMyapp()
 		self.pageConnections()
 		self.pageOutput()
-		
+
+		maxi = self.conf.get('GENERAL', 'maximize')
+		if maxi == '1': self.Maximize()
+
 		self.Centre() 
 
 	def ShowStatusBar(self, w_msg, colour):
@@ -107,14 +110,22 @@ class MyFrame(wx.Frame):
 		self.ShowStatusBar(w_msg,(255,140,0)) 
 
 	def onTabChange(self, event):
-		self.SetStatusText('')
+		try:
+			self.SetStatusText('')
+			if self.notebook.GetSelection() == 1:
+				self.toolbar1.EnableTool(104,True)
+				self.toolbar1.EnableTool(105,True)
+			else:
+				self.toolbar1.EnableTool(104,False)
+				self.toolbar1.EnableTool(105,False)
+		except:pass
 
 	# create your page in the manuals and add the link here
 	def OnToolHelp(self, event): 
 		url = "/usr/share/openplotter-doc/template/myapp_app.html"
 		webbrowser.open(url, new=2)
 
-	def OnToolSettings(self, event): 
+	def OnToolSettings(self, event=0): 
 		subprocess.call(['pkill', '-f', 'openplotter-settings'])
 		subprocess.Popen('openplotter-settings')
 
@@ -195,19 +206,6 @@ class MyFrame(wx.Frame):
 		self.ports = Ports(self.conf, self.currentLanguage)
 
 	def printConnections(self):
-		# Check if Signal K and some plugins are installed
-		if self.platform.skPort: 
-			self.toolbar3.EnableTool(302,True)
-			self.toolbar3.EnableTool(303,True)
-			if self.platform.isSKpluginInstalled('signalk-to-nmea2000'):
-				self.toolbar3.EnableTool(304,True)
-			else: self.toolbar3.EnableTool(304,False)
-		else:
-			self.toolbar3.EnableTool(302,False)
-			self.toolbar3.EnableTool(303,False)
-			self.toolbar3.EnableTool(304,False)
-		self.toolbar4.EnableTool(402,False)
-
 		self.listConnections.DeleteAllItems()
 		enabled = self.conf.get('MYAPP', 'sending')
 		for i in self.ports.connections:
@@ -225,16 +223,32 @@ class MyFrame(wx.Frame):
 			if enabled == '1': self.listConnections.SetItemBackgroundColour(self.listConnections.GetItemCount()-1,(255,215,0))
 
 	def OnSkConnections(self,e):
-		url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/connections/-'
-		webbrowser.open(url, new=2)
-
-	def OnSkTo0183(self,e):
-		url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/plugins/sk-to-nmea0183'
-		webbrowser.open(url, new=2)
+		if self.platform.skPort: 
+			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/connections/-'
+			webbrowser.open(url, new=2)
+		else: 
+			self.ShowStatusBarRED(_('Please install "Signal K Installer" OpenPlotter app'))
+			self.OnToolSettings()
 
 	def OnSkTo2000(self,e):
-		url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/plugins/sk-to-nmea2000'
-		webbrowser.open(url, new=2)
+		if self.platform.skPort: 
+			if self.platform.isSKpluginInstalled('signalk-to-nmea2000'):
+				url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/plugins/sk-to-nmea2000'
+			else: 
+				self.ShowStatusBarRED(_('Please install "signalk-to-nmea2000" Signal K app'))
+				url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/appstore/apps'
+			webbrowser.open(url, new=2)
+		else: 
+			self.ShowStatusBarRED(_('Please install "Signal K Installer" OpenPlotter app'))
+			self.OnToolSettings()
+
+	def OnSkTo0183(self,e):
+		if self.platform.skPort: 
+			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/plugins/sk-to-nmea0183'
+			webbrowser.open(url, new=2)
+		else: 
+			self.ShowStatusBarRED(_('Please install "Signal K Installer" OpenPlotter app'))
+			self.OnToolSettings()
 
 	def OnEditConnButton(self,e):
 		selected = self.listConnections.GetFirstSelected()
