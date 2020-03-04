@@ -14,27 +14,30 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
-import os, subprocess
+
+import os
 from openplotterSettings import conf
 from openplotterSettings import language
 
 def main():
-	# This file will be ran as sudo. Do here whatever you need to remove files and programs before app uninstall.
 	conf2 = conf.Conf()
-	currentdir = os.path.dirname(__file__)
+	currentdir = os.path.dirname(os.path.abspath(__file__))
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-myapp',currentLanguage)
 
-	# here we remove the services
-	print(_('Removing openplotter-read-myapp service...'))
+	print(_('Removing app from OpenPlotter...'))
 	try:
-		subprocess.call(['systemctl', 'disable', 'openplotter-myapp-read'])
-		subprocess.call(['systemctl', 'stop', 'openplotter-myapp-read'])
-		subprocess.call(['rm', '-f', '/etc/systemd/system/openplotter-myapp-read.service'])
-		subprocess.call(['systemctl', 'daemon-reload'])
-		print(_('DONE'))
+		package = 'openplotter-myapp'
+		externalApps0 = eval(conf2.get('APPS', 'external_apps'))
+		externalApps1 = []
+		for i in externalApps0:
+			if i['package'] != package: externalApps1.append(i)
+		conf2.set('APPS', 'external_apps', str(externalApps1))
+		os.system('rm -f /etc/apt/sources.list.d/myapp.list')
+		os.system('apt update')
 	except Exception as e: print(_('FAILED: ')+str(e))
 
+	### This file will be ran as sudo. Do here whatever you need to remove files and programs before app uninstall.
 
 if __name__ == '__main__':
 	main()

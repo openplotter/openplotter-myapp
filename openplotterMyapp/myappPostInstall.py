@@ -14,27 +14,49 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
-import os, subprocess
+
+import os
 from openplotterSettings import conf
 from openplotterSettings import language
 
 def main():
-	# This file will be ran as sudo. Do here whatever you need after package installation.
 	conf2 = conf.Conf()
-	currentdir = os.path.dirname(__file__)
+	currentdir = os.path.dirname(os.path.abspath(__file__))
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-myapp',currentLanguage)
 
-	# here we create a service to run openplotter-myapp-read file
-	print(_('Adding openplotter-read-myapp service...'))
+	print(_('Adding app to OpenPlotter...'))
 	try:
-		fo = open('/etc/systemd/system/openplotter-myapp-read.service', "w")
-		fo.write( '[Service]\nExecStart=openplotter-myapp-read\nStandardOutput=syslog\nStandardError=syslog\nUser='+conf2.user+'\n[Install]\nWantedBy=multi-user.target')
-		fo.close()
-		subprocess.call(['systemctl', 'daemon-reload'])
-		print(_('DONE'))
+		### EDIT THIS
+		app = {
+		'name': 'Myapp',
+		'platform': 'both',
+		'package': 'openplotter-myapp',
+		'preUninstall': 'myappPreUninstall',
+		'uninstall': 'openplotter-myapp',
+		'sources': ['https://dl.cloudsmith.io/public/openplotter/openplotter-external/deb/debian'],
+		'dev': 'no',
+		'entryPoint': 'openplotter-myapp',
+		'postInstall': 'myappPostInstall',
+		'reboot': 'no',
+		'module': 'openplotterMyapp'
+		}
+		gpgKey = currentdir+'/data/myapp.gpg.key'
+		sourceList = currentdir+'/data/myapp.list'
+		### END
+
+		externalApps0 = eval(conf2.get('APPS', 'external_apps'))
+		externalApps1 = []
+		for i in externalApps0:
+			if i['package'] != app['package']: externalApps1.append(i)
+		externalApps1.append(app)
+		conf2.set('APPS', 'external_apps', str(externalApps1))
+		os.system('cp '+sourceList+' /etc/apt/sources.list.d')
+		os.system('apt-key add - < '+gpgKey)
+		os.system('apt update')
 	except Exception as e: print(_('FAILED: ')+str(e))
 
+	### This file will be ran as sudo. Do here whatever you need after package installation.
 
 if __name__ == '__main__':
 	main()

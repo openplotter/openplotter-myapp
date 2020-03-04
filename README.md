@@ -20,18 +20,21 @@ Install [openplotter-settings](https://github.com/openplotter/openplotter-settin
 
 > Any OpenPlotter app must have openplotter-settings installed
 
-Install openplotter-myapp dependencies:
+Install dependencies:
 
 `sudo apt install foo bar`
 
-Clone openplotter-myapp:
+Clone the repository:
 
 `git clone https://github.com/openplotter/openplotter-myapp`
 
-Make your changes and test them installing the app:
+Make your changes and install:
 
-`cd openplotter-myapp`
 `sudo python3 setup.py install`
+
+Run:
+
+`openplotter-myapp`
 
 Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter/).
 
