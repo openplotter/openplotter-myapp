@@ -18,45 +18,40 @@
 import time, os, subprocess, sys
 from openplotterSettings import language
 
-# This class will be always called at startup. You should start here only GUI programs. Non GUI progrmas should be started as a services, see setup.py and myappPostInstall.py
+### This class will be always called at startup. You should start here only GUI programs. Non GUI progrmas should be started as a services.
+
 class Start():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
 		currentdir = os.path.dirname(__file__)
 		language.Language(currentdir,'openplotter-myapp',currentLanguage)
-		# "self.initialMessage" will be printed at startup if it has content. If not, the function "start" will not be called. Use trasnlatable text: _('Starting My App...')
-		self.initialMessage = ''
+		
+		self.initialMessage = '' ### "self.initialMessage" will be printed at startup if it has content. If not, the function "start" will not be called. Use trasnlatable text: _('Starting My App...')
 
-	# this funtion will be called only if "self.initialMessage" has content.
-	def start(self):
-		green = '' # green messages will be printed in green after the "self.initialMessage"
-		black = '' # black messages will be printed in black after the green message
-		red = '' # red messages will be printed in red in a new line
+	def start(self): ### this funtion will be called only if "self.initialMessage" has content.
+		green = '' ### green messages will be printed in green after the "self.initialMessage"
+		black = '' ### black messages will be printed in black after the green message
+		red = '' ### red messages will be printed in red in a new line
 
-		# start here any GUI program that needs to be started at startup and set the messages.
+		### start here any GUI program that needs to be started at startup and set the messages.
 
-		time.sleep(2) # "check" function is called after "start" function, so if we start any program here we should wait some seconds before checking it. 
+		time.sleep(2) ### "check" function is always called after "start" function, so if we start any program here we should wait some seconds before checking it. 
 		return {'green': green,'black': black,'red': red}
 
-# This class is called after "start" function and when the user checks the system
-class Check():
+class Check(): ### This class is always called after "start" function and when the user checks the system.
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
 		currentdir = os.path.dirname(__file__)
 		language.Language(currentdir,'openplotter-myapp',currentLanguage)
-		# "self.initialMessage" will be printed when checking the system. If it is empty the function check will not be called. Use trasnlatable text: _('Checking My App...')
-		self.initialMessage = _('Checking My App dummy sensors...')
+		
+		self.initialMessage = '' ### "self.initialMessage" will be printed when checking the system. If it is empty the function check will not be called. Use trasnlatable text: _('Checking My App...')
 
-	def check(self):
-		green = '' # green messages will be printed in green after the "self.initialMessage"
-		black = '' # black messages will be printed in black after the green message
-		red = '' # red messages will be printed in red in a new line
+	def check(self): ### this funtion will be called only if "self.initialMessage" has content.
+		green = '' ### green messages will be printed in green after the "self.initialMessage"
+		black = '' ### black messages will be printed in black after the green message
+		red = '' ### red messages will be printed in red in a new line
 
-		# check any feature and set the messages
-		try:
-			subprocess.check_output(['systemctl', 'is-active', 'openplotter-myapp-read.service']).decode(sys.stdin.encoding)
-			green = _('running')
-		except: black = _('not running')
+		# check here any feature and set the messages
 
 		return {'green': green,'black': black,'red': red}
 

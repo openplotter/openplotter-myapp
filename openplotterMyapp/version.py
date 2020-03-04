@@ -1,7 +1,7 @@
-version = '2.0'
-codeName = ''
+version = '2.0.1'
+codeName = 'Open Arms'
 state = 'beta'
 
-# version = First digit is the OpenPlotter version, second one is this app version. The debian package will have a third digit with the package version.
+# version = First digit is the OpenPlotter version this app belows, second one means major changes like new features, third one means minor changes like fixed errors or text and translations changes.
 # codeName = This is decided by the OpenPlotter team and contributors.
-# state = dev, beta and stable.
+# state = dev, beta or stable.

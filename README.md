@@ -2,54 +2,46 @@
 
 This is a template to help create apps for OpenPlotter. 
 
-> Please, read these comments to edit this file and remove them in your app.
-
 ### Installing
+
+Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **production**.
 
 #### For production
 
-Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **production** and just install this app from *OpenPlotter Apps* tab.
+Download the latest [openplotter-myapp deb package](https://cloudsmith.io/~openplotter/repos/openplotter-external/packages/) and install it:
 
-> Your app should be aproved by OpenPlotter team and added to the openplotter-settings main app. It should be written for python3. 
+`sudo dpkg -i openplotter-myapp_x.x.x-xxx_all.deb` 
 
 #### For development
-
-> Put here all the info needed to install, edit and propose changes to your app.
-
-Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **development**.
-
-> Any OpenPlotter app must have openplotter-settings installed
-
-Install dependencies:
-
-`sudo apt install foo bar`
 
 Clone the repository:
 
 `git clone https://github.com/openplotter/openplotter-myapp`
 
-Make your changes and install:
+Create the package:
 
-`sudo python3 setup.py install`
+```
+cd openplotter-myapp
+dpkg-buildpackage -b
+```
+
+Install the package:
+
+```
+cd ..
+sudo dpkg -i openplotter-myapp_x.x.x-xxx_all.deb
+```
 
 Run:
 
 `openplotter-myapp`
 
-Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter/).
-
-> Once approved we will add your app to the OpenPlotter PPA repository. Please provide any important info necessary to OpenPlotter team to create the Debian package.
+Make your changes and repeat packaging and installation steps to test. Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://cloudsmith.io/~openplotter/repos/openplotter-external/packages/).
 
 ### Documentation
 
 https://openplotter.readthedocs.io
 
-> Please add a chapter to OpenPlotter documentation with the info to use your app: https://github.com/openplotter/docs
-
 ### Support
 
 http://forum.openmarine.net/forumdisplay.php?fid=1
-
-> Feel free to use openmarine.net forum to give support for your app.
-
-> Thanks for contributing!!!
