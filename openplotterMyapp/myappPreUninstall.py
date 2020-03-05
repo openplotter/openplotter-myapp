@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # This file is part of Openplotter.
-# Copyright (C) 2015 by xxxx <https://github.com/xxxx/openplotter-myapp>
+# Copyright (C) 2020 by Sailoog <https://github.com/openplotter/openplotter-myapp>
 #
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,9 +35,18 @@ def main():
 		conf2.set('APPS', 'external_apps', str(externalApps1))
 		os.system('rm -f /etc/apt/sources.list.d/myapp.list')
 		os.system('apt update')
+		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
-	### This file will be ran as sudo. Do here whatever you need to remove files and programs before app uninstall.
+	###
+	### Do here whatever you need to remove files and programs before app uninstall. This file will be ran as sudo. 
+	###
+
+	print(_('Removing version...'))
+	try:
+		conf2.set('APPS', 'myapp', '') ### replace myapp by the name of your app, use the same name in openplotterMyapp.py and myappPostInstall.py scripts.
+		print(_('DONE'))
+	except Exception as e: print(_('FAILED: ')+str(e))
 
 if __name__ == '__main__':
 	main()
