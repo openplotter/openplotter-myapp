@@ -1,3 +1,9 @@
+openplotter-myapp (2.0.2-beta) buster; urgency=medium
+
+  * Make external apps independent
+
+ -- Sailoog <info@sailoog.com>  Thu, 05 Mar 2020 12:50:12 +0100
+
 openplotter-myapp (2.0.1-beta) buster; urgency=medium
 
   * Initial release
