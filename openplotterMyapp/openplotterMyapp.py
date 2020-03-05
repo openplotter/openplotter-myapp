@@ -70,7 +70,7 @@ class MyFrame(wx.Frame):
 
 		self.Centre()
 
-		self.ShowStatusBarGREEN(_('This is a mock app'))
+		self.ShowStatusBarGREEN(_('Click on "Help" to learn how to get started'))
 
 	def ShowStatusBar(self, w_msg, colour):
 		self.GetStatusBar().SetForegroundColour(colour)
@@ -107,10 +107,23 @@ class MyFrame(wx.Frame):
 		subprocess.Popen('openplotter-settings')
 
 	def pageMyapp(self):
-		text = wx.StaticText(self.myapp, label=_('This is a mock app'))
+		text1 = wx.StaticText(self.myapp, label=_('This app does nothing.'))
+		text2 = wx.StaticText(self.myapp, label=_('This is a template to start writing your own openplotter app.'))
+
+		hbox1 = wx.BoxSizer(wx.HORIZONTAL)
+		hbox1.AddStretchSpacer(1)
+		hbox1.Add(text1, 0, wx.ALL | wx.EXPAND, 5)
+		hbox1.AddStretchSpacer(1)
+
+		hbox2 = wx.BoxSizer(wx.HORIZONTAL)
+		hbox2.AddStretchSpacer(1)
+		hbox2.Add(text2, 0, wx.ALL | wx.EXPAND, 5)
+		hbox2.AddStretchSpacer(1)
 
 		vbox = wx.BoxSizer(wx.VERTICAL)
-		vbox.Add(text, 0, wx.ALL | wx.EXPAND, 10)
+		vbox.AddStretchSpacer(1)
+		vbox.Add(hbox1, 0, wx.ALL | wx.EXPAND, 5)
+		vbox.Add(hbox2, 0, wx.ALL | wx.EXPAND, 5)
 		vbox.AddStretchSpacer(1)
 		self.myapp.SetSizer(vbox)
 
