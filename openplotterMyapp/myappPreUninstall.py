@@ -23,17 +23,17 @@ def main():
 	conf2 = conf.Conf()
 	currentdir = os.path.dirname(os.path.abspath(__file__))
 	currentLanguage = conf2.get('GENERAL', 'lang')
-	language.Language(currentdir,'openplotter-myapp',currentLanguage)
+	package = 'openplotter-myapp' ### replace by the name of your package
+	language.Language(currentdir, package, currentLanguage)
 
 	print(_('Removing app from OpenPlotter...'))
 	try:
-		package = 'openplotter-myapp'
 		externalApps0 = eval(conf2.get('APPS', 'external_apps'))
 		externalApps1 = []
 		for i in externalApps0:
 			if i['package'] != package: externalApps1.append(i)
 		conf2.set('APPS', 'external_apps', str(externalApps1))
-		os.system('rm -f /etc/apt/sources.list.d/myapp.list')
+		os.system('rm -f /etc/apt/sources.list.d/myapp.list') ### replace myapp by the name of your app, use the same name in myappPostInstall.py script.
 		os.system('apt update')
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))

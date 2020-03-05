@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import os
+import os, sys, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
 from .version import version
@@ -24,36 +24,46 @@ def main():
 	conf2 = conf.Conf()
 	currentdir = os.path.dirname(os.path.abspath(__file__))
 	currentLanguage = conf2.get('GENERAL', 'lang')
-	language.Language(currentdir,'openplotter-myapp',currentLanguage)
+	package = 'openplotter-myapp' ### replace by the name of your package
+	language.Language(currentdir, package, currentLanguage)
+
+	app = {
+	'name': 'My app', ### replace by your app name
+	'platform': 'both', ### rpi, debian or both
+	'package': package,
+	'preUninstall': 'myappPreUninstall', ### replace by your pre uninstall entry point (see setup.py file).
+	'uninstall': package,
+	'sources': ['https://dl.cloudsmith.io/public/openplotter/openplotter-external/deb/debian buster'], ### replace by your repositories URLs separated by commas.
+	'dev': 'no', ### set to "yes" if you do not want your app to be updated from repositories yet.
+	'entryPoint': 'openplotter-myapp', ### replace by your app GUI entry point (see setup.py file).
+	'postInstall': 'myappPostInstall', ### replace by your post install entry point (see setup.py file).
+	'reboot': 'no', ### set to "yes" if you want to shown a message "Reboot to apply changes" after updating from openplotter-settings.
+	'module': 'openplotterMyapp' ### replace by your python module name (see setup.py file).
+	}
+	gpgKey = currentdir+'/data/myapp.gpg.key' ### replace by the path to your gpg key file
+	sourceList = currentdir+'/data/myapp.list' ### replace by the path to your sources list file
 
 	print(_('Adding app to OpenPlotter...'))
 	try:
-		app = {
-		'name': 'Myapp',
-		'platform': 'both',
-		'package': 'openplotter-myapp',
-		'preUninstall': 'myappPreUninstall',
-		'uninstall': 'openplotter-myapp',
-		'sources': ['https://dl.cloudsmith.io/public/openplotter/openplotter-external/deb/debian'],
-		'dev': 'no',
-		'entryPoint': 'openplotter-myapp',
-		'postInstall': 'myappPostInstall',
-		'reboot': 'no',
-		'module': 'openplotterMyapp'
-		}
-		gpgKey = currentdir+'/data/myapp.gpg.key'
-		sourceList = currentdir+'/data/myapp.list'
-
 		externalApps0 = eval(conf2.get('APPS', 'external_apps'))
 		externalApps1 = []
 		for i in externalApps0:
-			if i['package'] != app['package']: externalApps1.append(i)
+			if i['package'] != package: externalApps1.append(i)
 		externalApps1.append(app)
 		conf2.set('APPS', 'external_apps', str(externalApps1))
+		print(_('DONE'))
+	except Exception as e: print(_('FAILED: ')+str(e))
 
-		os.system('cp '+sourceList+' /etc/apt/sources.list.d')
-		os.system('apt-key add - < '+gpgKey)
-		os.system('apt update')
+	print(_('Checking sources...'))
+	try:
+		sources = subprocess.check_output('apt-cache policy', shell=True).decode(sys.stdin.encoding)
+		exists = True
+		for i in app['sources']:
+			if not i in sources: exists = False
+		if not exists:
+			os.system('cp '+sourceList+' /etc/apt/sources.list.d')
+			os.system('apt-key add - < '+gpgKey)
+			os.system('apt update')
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
