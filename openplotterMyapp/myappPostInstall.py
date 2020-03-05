@@ -18,6 +18,7 @@
 import os, sys, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
+from openplotterSettings import platform
 from .version import version
 
 def main():
@@ -26,17 +27,18 @@ def main():
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	package = 'openplotter-myapp' ### replace by the name of your package
 	language.Language(currentdir, package, currentLanguage)
+	platform2 = platform.Platform()
 
 	app = {
 	'name': 'My app', ### replace by your app name
 	'platform': 'both', ### rpi, debian or both
 	'package': package,
-	'preUninstall': 'myappPreUninstall', ### replace by your pre uninstall entry point (see setup.py file).
+	'preUninstall': platform2.admin+' '+'myappPreUninstall', ### replace myappPreUninstall by your pre uninstall entry point (see setup.py file).
 	'uninstall': package,
 	'sources': ['https://dl.cloudsmith.io/public/openplotter/openplotter-external/deb/debian buster'], ### replace by your repositories URLs separated by commas.
 	'dev': 'no', ### set to "yes" if you do not want your app to be updated from repositories yet.
 	'entryPoint': 'openplotter-myapp', ### replace by your app GUI entry point (see setup.py file).
-	'postInstall': 'myappPostInstall', ### replace by your post install entry point (see setup.py file).
+	'postInstall': platform2.admin+' '+'myappPostInstall', ### replace myappPostInstall by your post install entry point (see setup.py file).
 	'reboot': 'no', ### set to "yes" if you want to shown a message "Reboot to apply changes" after updating from openplotter-settings.
 	'module': 'openplotterMyapp' ### replace by your python module name (see setup.py file).
 	}
