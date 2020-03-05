@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter-myapp\n"
-"POT-Creation-Date: 2019-09-07 18:19+0200\n"
-"PO-Revision-Date: 2019-09-07 18:19+0200\n"
+"POT-Creation-Date: 2020-03-05 12:40+0100\n"
+"PO-Revision-Date: 2020-03-05 12:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -15,130 +15,92 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: myappPostInstall.py:29
-msgid "Adding openplotter-read-myapp service..."
+#: myappPostInstall.py:46
+msgid "Adding app to OpenPlotter..."
 msgstr ""
 
-#: myappPostInstall.py:38 myappPreUninstall.py:35
+#: myappPostInstall.py:54 myappPostInstall.py:67 myappPostInstall.py:77
+#: myappPreUninstall.py:38 myappPreUninstall.py:48
 msgid "DONE"
 msgstr ""
 
-#: myappPostInstall.py:39 myappPreUninstall.py:36
+#: myappPostInstall.py:55 myappPostInstall.py:68 myappPostInstall.py:78
+#: myappPreUninstall.py:39 myappPreUninstall.py:49
 msgid "FAILED: "
 msgstr ""
 
+#: myappPostInstall.py:57
+msgid "Checking sources..."
+msgstr ""
+
+#: myappPostInstall.py:74
+msgid "Setting version..."
+msgstr ""
+
 #: myappPreUninstall.py:29
-msgid "Removing openplotter-read-myapp service..."
+msgid "Removing app from OpenPlotter..."
 msgstr ""
 
-#: openplotterMyapp.py:36
-msgid "OpenPlotter My App"
+#: myappPreUninstall.py:45
+msgid "Removing version..."
 msgstr ""
 
-#: openplotterMyapp.py:46
-msgid "Help"
-msgstr ""
-
-#: openplotterMyapp.py:49
-msgid "Settings"
-msgstr ""
-
-#: openplotterMyapp.py:52
-msgid "Dummy Data"
-msgstr ""
-
-#: openplotterMyapp.py:55
-msgid "Dummy Output"
-msgstr ""
-
-#: openplotterMyapp.py:58
-msgid "Apply Changes"
-msgstr ""
-
-#: openplotterMyapp.py:60
-msgid "Cancel Changes"
-msgstr ""
-
-#: openplotterMyapp.py:68 ports.py:32
+#: openplotterMyapp.py:33 openplotterMyapp.py:55
 msgid "My App"
 msgstr ""
 
-#: openplotterMyapp.py:69
-msgid "Data output"
+#: openplotterMyapp.py:43
+msgid "Help"
 msgstr ""
 
-#: openplotterMyapp.py:70
-msgid "Output"
+#: openplotterMyapp.py:46
+msgid "Settings"
 msgstr ""
 
-#: openplotterMyapp.py:127
-msgid "Sending:  "
+#: openplotterMyapp.py:73
+msgid "Click on \"Help\" to learn how to get started"
 msgstr ""
 
-#: openplotterMyapp.py:156
-msgid "SK Connection"
+#: openplotterMyapp.py:110
+msgid "This app does nothing."
 msgstr ""
 
-#: openplotterMyapp.py:165
-msgid "Type"
+#: openplotterMyapp.py:111
+msgid "This is a template to start writing your own openplotter app."
 msgstr ""
 
-#: openplotterMyapp.py:166
-msgid "Mode"
+#: startup.py:27
+msgid "Opening \"My app\"..."
 msgstr ""
 
-#: openplotterMyapp.py:167
-msgid "Data"
+#: startup.py:35
+msgid "This message should be green"
 msgstr ""
 
-#: openplotterMyapp.py:168 openplotterMyapp.py:297
-msgid "Port"
+#: startup.py:36
+msgid "This message should be black"
 msgstr ""
 
-#: openplotterMyapp.py:169
-msgid "Editable"
+#: startup.py:37
+msgid "\"My app\" should open. Uninstall \"My app\" to remove this."
 msgstr ""
 
-#: openplotterMyapp.py:174
-msgid "Edit"
+#: startup.py:49
+msgid "Checking \"My app\"..."
 msgstr ""
 
-#: openplotterMyapp.py:211
-msgid "yes"
-msgstr ""
-
-#: openplotterMyapp.py:212
-msgid "no"
-msgstr ""
-
-#: openplotterMyapp.py:254
-msgid "Sending dummy data enabled"
-msgstr ""
-
-#: openplotterMyapp.py:259
-msgid "Sending dummy data disabled"
-msgstr ""
-
-#: openplotterMyapp.py:267
-msgid "Changes canceled"
-msgstr ""
-
-#: openplotterMyapp.py:278
-msgid "Hello World!"
-msgstr ""
-
-#: openplotterMyapp.py:289
-msgid "Updating packages data, please wait... "
-msgstr ""
-
-#: startup.py:48
-msgid "Checking My App dummy sensors..."
-msgstr ""
-
-#: startup.py:58
-msgid "running"
+#: startup.py:57
+msgid "\"My app\" is installed"
 msgstr ""
 
 #: startup.py:59
-msgid "not running"
+msgid "\"My app\" is running"
+msgstr ""
+
+#: startup.py:60
+msgid "\"My app\" is not running"
+msgstr ""
+
+#: startup.py:61
+msgid "Warning example. Uninstall \"My app\" to remove this."
 msgstr ""
