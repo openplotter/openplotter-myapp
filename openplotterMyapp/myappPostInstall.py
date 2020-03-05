@@ -30,7 +30,7 @@ def main():
 	platform2 = platform.Platform()
 
 	app = {
-	'name': 'My app', ### replace by your app name
+	'name': 'My app', ### replace My app by your app name
 	'platform': 'both', ### rpi, debian or both
 	'package': package,
 	'preUninstall': platform2.admin+' '+'myappPreUninstall', ### replace myappPreUninstall by your pre uninstall entry point (see setup.py file).
@@ -42,8 +42,8 @@ def main():
 	'reboot': 'no', ### set to "yes" if you want to shown a message "Reboot to apply changes" after updating from openplotter-settings.
 	'module': 'openplotterMyapp' ### replace by your python module name (see setup.py file).
 	}
-	gpgKey = currentdir+'/data/myapp.gpg.key' ### replace by the path to your gpg key file
-	sourceList = currentdir+'/data/myapp.list' ### replace by the path to your sources list file
+	gpgKey = currentdir+'/data/myapp.gpg.key' ### replace by the path to your gpg key file. Replace contents of this file by your key.
+	sourceList = currentdir+'/data/myapp.list' ### replace by the path to your sources list file. Replace contents of this file by your packages sources.
 
 	print(_('Adding app to OpenPlotter...'))
 	try:
@@ -70,7 +70,7 @@ def main():
 	except Exception as e: print(_('FAILED: ')+str(e))
 
 	###
-	### Do here whatever you need after package installation. This file will be ran as sudo. 
+	### Do here whatever you need after package installation. This file will be executed as sudo. 
 	###
 	
 	print(_('Setting version...'))

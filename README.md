@@ -32,6 +32,10 @@ cd ..
 sudo dpkg -i openplotter-myapp_x.x.x-xxx_all.deb
 ```
 
+Run post installation script:
+
+`sudo myappPostInstall`
+
 Run:
 
 `openplotter-myapp`

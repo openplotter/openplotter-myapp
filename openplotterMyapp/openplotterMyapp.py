@@ -28,9 +28,9 @@ class MyFrame(wx.Frame):
 		self.platform = platform.Platform()
 		self.currentdir = os.path.dirname(os.path.abspath(__file__))
 		self.currentLanguage = self.conf.get('GENERAL', 'lang')
-		self.language = language.Language(self.currentdir,'openplotter-myapp',self.currentLanguage)
+		self.language = language.Language(self.currentdir,'openplotter-myapp',self.currentLanguage) ### replace openplotter-myapp by your package name
 
-		wx.Frame.__init__(self, None, title=_('My App')+' '+version, size=(800,444))
+		wx.Frame.__init__(self, None, title='My App '+version, size=(800,444))
 		self.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
 		icon = wx.Icon(self.currentdir+"/data/openplotter-myapp.png", wx.BITMAP_TYPE_PNG)
 		self.SetIcon(icon)
@@ -76,19 +76,19 @@ class MyFrame(wx.Frame):
 		self.GetStatusBar().SetForegroundColour(colour)
 		self.SetStatusText(w_msg)
 
-	# red for error or cancellation messages
+	### red for error or cancellation messages
 	def ShowStatusBarRED(self, w_msg):
 		self.ShowStatusBar(w_msg, (130,0,0))
 
-	# green for succesful messages
+	### green for succesful messages
 	def ShowStatusBarGREEN(self, w_msg):
 		self.ShowStatusBar(w_msg, (0,130,0))
 
-	# black for informative messages
+	### black for informative messages
 	def ShowStatusBarBLACK(self, w_msg):
 		self.ShowStatusBar(w_msg, wx.BLACK) 
 
-	# yellow for attention messages
+	### yellow for attention or prcessing messages
 	def ShowStatusBarYELLOW(self, w_msg):
 		self.ShowStatusBar(w_msg,(255,140,0)) 
 
@@ -97,7 +97,7 @@ class MyFrame(wx.Frame):
 			self.SetStatusText('')
 		except:pass
 
-	# create your page in the manuals and add the link here
+	### replace url by your manuals
 	def OnToolHelp(self, event): 
 		url = "/usr/share/openplotter-doc/external/myapp_app.html"
 		webbrowser.open(url, new=2)

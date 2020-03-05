@@ -23,7 +23,7 @@ def main():
 	conf2 = conf.Conf()
 	currentdir = os.path.dirname(os.path.abspath(__file__))
 	currentLanguage = conf2.get('GENERAL', 'lang')
-	package = 'openplotter-myapp' ### replace by the name of your package
+	package = 'openplotter-myapp' ### replace openplotter-myapp by the name of your package
 	language.Language(currentdir, package, currentLanguage)
 
 	print(_('Removing app from OpenPlotter...'))
@@ -33,13 +33,13 @@ def main():
 		for i in externalApps0:
 			if i['package'] != package: externalApps1.append(i)
 		conf2.set('APPS', 'external_apps', str(externalApps1))
-		os.system('rm -f /etc/apt/sources.list.d/myapp.list') ### replace myapp by the name of your app, use the same name in myappPostInstall.py script.
+		os.system('rm -f /etc/apt/sources.list.d/myapp.list') ### replace myapp.list by the name of your sources file (see myappPostInstall.py script).
 		os.system('apt update')
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
 	###
-	### Do here whatever you need to remove files and programs before app uninstall. This file will be ran as sudo. 
+	### Do here whatever you need to remove files and programs before app uninstallation. This file will be executed as sudo. 
 	###
 
 	print(_('Removing version...'))
