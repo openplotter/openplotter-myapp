@@ -47,8 +47,10 @@ def main():
 
 	print(_('Adding app to OpenPlotter...'))
 	try:
-		externalApps0 = eval(conf2.get('APPS', 'external_apps'))
 		externalApps1 = []
+		try:
+			externalApps0 = eval(conf2.get('APPS', 'external_apps'))
+		except: externalApps0 = []
 		for i in externalApps0:
 			if i['package'] != package: externalApps1.append(i)
 		externalApps1.append(app)
