@@ -52,7 +52,7 @@ class MyFrame(wx.Frame):
 		self.myapp = wx.Panel(self.notebook)
 		self.connections = wx.Panel(self.notebook)
 		self.output = wx.Panel(self.notebook)
-		self.notebook.AddPage(self.myapp, _('My App'))
+		self.notebook.AddPage(self.myapp, 'My App')
 		self.il = wx.ImageList(24, 24)
 		img0 = self.il.Add(wx.Bitmap(self.currentdir+"/data/openplotter-24.png", wx.BITMAP_TYPE_PNG))
 		self.notebook.AssignImageList(self.il)
@@ -108,7 +108,7 @@ class MyFrame(wx.Frame):
 
 	def pageMyapp(self):
 		text1 = wx.StaticText(self.myapp, label=_('This app does nothing.'))
-		text2 = wx.StaticText(self.myapp, label=_('This is a template to start writing your own openplotter app.'))
+		text2 = wx.StaticText(self.myapp, label=_('This is a template to start writing your own OpenPlotter app.'))
 
 		hbox1 = wx.BoxSizer(wx.HORIZONTAL)
 		hbox1.AddStretchSpacer(1)
