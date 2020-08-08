@@ -1,3 +1,10 @@
+openplotter-myapp (2.1.0-beta) buster; urgency=medium
+
+  * Add feature: show pending actions in openplotter-settings app
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Sat, 08 Aug 2020 13:05:58 +0200
+
 openplotter-myapp (2.0.4-beta) buster; urgency=medium
 
   * Fix error
