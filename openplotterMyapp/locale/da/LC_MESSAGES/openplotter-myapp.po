@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2020-03-05 12:40+0100\n"
-"PO-Revision-Date: 2020-03-10 20:13+0100\n"
+"POT-Creation-Date: 2020-03-10 20:05+0100\n"
+"PO-Revision-Date: 2020-08-08 13:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Language: da\n"
@@ -14,96 +14,94 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: da\n"
 "X-Crowdin-File: openplotter-myapp.po\n"
+"X-Crowdin-File-ID: 26\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: myappPostInstall.py:46
+#: myappPostInstall.py:48
 msgid "Adding app to OpenPlotter..."
-msgstr ""
+msgstr "Tilføjer app til OpenPlotter..."
 
-#: myappPostInstall.py:54 myappPostInstall.py:67 myappPostInstall.py:77
+#: myappPostInstall.py:58 myappPostInstall.py:71 myappPostInstall.py:81
 #: myappPreUninstall.py:38 myappPreUninstall.py:48
 msgid "DONE"
-msgstr ""
+msgstr "UDFØRT"
 
-#: myappPostInstall.py:55 myappPostInstall.py:68 myappPostInstall.py:78
+#: myappPostInstall.py:59 myappPostInstall.py:72 myappPostInstall.py:82
 #: myappPreUninstall.py:39 myappPreUninstall.py:49
 msgid "FAILED: "
-msgstr ""
+msgstr "MISLYKKET: "
 
-#: myappPostInstall.py:57
+#: myappPostInstall.py:61
 msgid "Checking sources..."
-msgstr ""
+msgstr "Kontrollerer kilder..."
 
-#: myappPostInstall.py:74
+#: myappPostInstall.py:78
 msgid "Setting version..."
-msgstr ""
+msgstr "Indstiller version..."
 
 #: myappPreUninstall.py:29
 msgid "Removing app from OpenPlotter..."
-msgstr ""
+msgstr "Fjerner app fra OpenPlotter..."
 
 #: myappPreUninstall.py:45
 msgid "Removing version..."
-msgstr ""
-
-#: openplotterMyapp.py:33 openplotterMyapp.py:55
-msgid "My App"
-msgstr ""
+msgstr "Fjerner version..."
 
 #: openplotterMyapp.py:43
 msgid "Help"
-msgstr ""
+msgstr "Hjælp"
 
 #: openplotterMyapp.py:46
 msgid "Settings"
-msgstr ""
+msgstr "Indstillinger"
 
 #: openplotterMyapp.py:73
 msgid "Click on \"Help\" to learn how to get started"
-msgstr ""
+msgstr "Klik på \"Hjælp\" for at lære, hvordan du kommer i gang"
 
 #: openplotterMyapp.py:110
 msgid "This app does nothing."
-msgstr ""
+msgstr "Denne app gør intet."
 
 #: openplotterMyapp.py:111
-msgid "This is a template to start writing your own openplotter app."
-msgstr ""
+msgid "This is a template to start writing your own OpenPlotter app."
+msgstr "Dette er en skabelon til at skrive din egen OpenPlotter-app."
 
 #: startup.py:27
 msgid "Opening \"My app\"..."
-msgstr ""
+msgstr "Åbner \"My app\"..."
 
 #: startup.py:35
 msgid "This message should be green"
-msgstr ""
+msgstr "Denne meddelelse bør være grøn"
 
 #: startup.py:36
 msgid "This message should be black"
-msgstr ""
+msgstr "Denne meddelelse bør være sort"
 
 #: startup.py:37
 msgid "\"My app\" should open. Uninstall \"My app\" to remove this."
-msgstr ""
+msgstr "\"My app\" burde åbne. Afinstaller \"My app\" for at fjerne dette."
 
 #: startup.py:49
 msgid "Checking \"My app\"..."
-msgstr ""
+msgstr "Kontrollere \"My app\"..."
 
 #: startup.py:57
 msgid "\"My app\" is installed"
-msgstr ""
+msgstr "\"My app\" er installeret"
 
 #: startup.py:59
 msgid "\"My app\" is running"
-msgstr ""
+msgstr "\"My app\" kører"
 
 #: startup.py:60
 msgid "\"My app\" is not running"
-msgstr ""
+msgstr "\"My app\" kører ikke"
 
 #: startup.py:61
 msgid "Warning example. Uninstall \"My app\" to remove this."
-msgstr ""
+msgstr "Advarselseksempel. Afinstaller \"My app\" for at fjerne dette."

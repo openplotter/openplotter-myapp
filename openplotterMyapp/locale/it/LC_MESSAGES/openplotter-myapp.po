@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2020-03-05 12:40+0100\n"
-"PO-Revision-Date: 2020-03-10 20:14+0100\n"
+"POT-Creation-Date: 2020-03-10 20:05+0100\n"
+"PO-Revision-Date: 2020-08-08 13:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -14,29 +14,31 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: it\n"
 "X-Crowdin-File: openplotter-myapp.po\n"
+"X-Crowdin-File-ID: 26\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: myappPostInstall.py:46
+#: myappPostInstall.py:48
 msgid "Adding app to OpenPlotter..."
 msgstr "Aggiungendo le app a OpenPlotter..."
 
-#: myappPostInstall.py:54 myappPostInstall.py:67 myappPostInstall.py:77
+#: myappPostInstall.py:58 myappPostInstall.py:71 myappPostInstall.py:81
 #: myappPreUninstall.py:38 myappPreUninstall.py:48
 msgid "DONE"
 msgstr "FATTO"
 
-#: myappPostInstall.py:55 myappPostInstall.py:68 myappPostInstall.py:78
+#: myappPostInstall.py:59 myappPostInstall.py:72 myappPostInstall.py:82
 #: myappPreUninstall.py:39 myappPreUninstall.py:49
 msgid "FAILED: "
 msgstr "FALLITO: "
 
-#: myappPostInstall.py:57
+#: myappPostInstall.py:61
 msgid "Checking sources..."
 msgstr "Controllo codici sorgente..."
 
-#: myappPostInstall.py:74
+#: myappPostInstall.py:78
 msgid "Setting version..."
 msgstr "Impostazione versione..."
 
@@ -47,10 +49,6 @@ msgstr "Rimozione app da OpenPlotter..."
 #: myappPreUninstall.py:45
 msgid "Removing version..."
 msgstr "Rimozione versione..."
-
-#: openplotterMyapp.py:33 openplotterMyapp.py:55
-msgid "My App"
-msgstr "La mia App"
 
 #: openplotterMyapp.py:43
 msgid "Help"
@@ -69,8 +67,8 @@ msgid "This app does nothing."
 msgstr "Questa app non fa niente."
 
 #: openplotterMyapp.py:111
-msgid "This is a template to start writing your own openplotter app."
-msgstr "Questo è un modello per iniziare a scrivere la tua app openplotter."
+msgid "This is a template to start writing your own OpenPlotter app."
+msgstr "Questo è un modello per iniziare a scrivere la tua app OpenPlotter."
 
 #: startup.py:27
 msgid "Opening \"My app\"..."
