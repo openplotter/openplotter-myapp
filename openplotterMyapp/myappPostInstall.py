@@ -40,7 +40,8 @@ def main():
 	'entryPoint': 'openplotter-myapp', ### replace by your app GUI entry point (see setup.py file).
 	'postInstall': platform2.admin+' '+'myappPostInstall', ### replace myappPostInstall by your post install entry point (see setup.py file).
 	'reboot': 'no', ### set to "yes" if you want to shown a message "Reboot to apply changes" after updating from openplotter-settings.
-	'module': 'openplotterMyapp' ### replace by your python module name (see setup.py file).
+	'module': 'openplotterMyapp', ### replace by your python module name (see setup.py file).
+	'conf': 'myapp' ### replace myapp by the name of your app, use the same name in openplotterMyapp.py and myappPreUninstall.py scripts.
 	}
 	gpgKey = currentdir+'/data/myapp.gpg.key' ### replace by the path to your gpg key file. Replace contents of this file by your key.
 	sourceList = currentdir+'/data/myapp.list' ### replace by the path to your sources list file. Replace contents of this file by your packages sources.

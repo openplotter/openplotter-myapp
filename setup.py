@@ -16,7 +16,8 @@
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
 from setuptools import setup
-from openplotterMyapp import version ### replace openplotterMyapp by your python module name, See below.
+from openplotterMyapp import version
+### replace openplotterMyapp by your python module name, See below.
 
 setup (
 	name = 'openplotterMyapp', ### replace by the python module name of your app. This must be lowerCamelCase and must match the name of the folder openplotterMyapp.
